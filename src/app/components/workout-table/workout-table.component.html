@@ -1,0 +1,42 @@
+<!-- src/app/components/workout-table/workout-table.component.html -->
+<div class="bg-white p-6 rounded shadow-md">
+    <!-- Filters -->
+    <div class="flex flex-col md:flex-row items-center justify-between mb-4">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search by username"
+        class="w-full md:w-1/2 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300 mb-2 md:mb-0"
+      />
+      <select
+        [(ngModel)]="selectedWorkoutType"
+        class="w-full md:w-1/4 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+      >
+        <option value="">All Workout Types</option>
+        <option *ngFor="let type of workoutTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+  
+    <!-- Workout Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border-b border-gray-200 text-left">User Name</th>
+            <th class="py-2 px-4 border-b border-gray-200 text-left">Workout Type</th>
+            <th class="py-2 px-4 border-b border-gray-200 text-left">Minutes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredWorkouts">
+            <td class="py-2 px-4 border-b border-gray-200">{{ item.userName }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">{{ item.workout.type }}</td>
+            <td class="py-2 px-4 border-b border-gray-200">{{ item.workout.minutes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Pagination Placeholder -->
+    <!-- If you choose to integrate ngx-pagination later, add pagination controls here -->
+  </div>
+  
